@@ -1,12 +1,3 @@
-# Pennhackathon - 2023
+# 🗃 NFT Minter Tutorial Starter Files
 
-## Description
-
-This is Blockchain at McGill's Penn Blockchain Hackathon project.
-The project consists of minting educational content as immutable ERC-721 tokens for users to access information without the worry of it being taken down. Given current worldwide political contexts, education should be accessible by everyone: it residing on the blockchain solves potential censorship issues.
-
-## Setup
-
-## Backend
-
-## 
+This project contains the starter files for [Alchemy's NFT Minter tutorial](https://docs.alchemyapi.io/alchemy/tutorials/nft-minter), in which we teach you how to connect your smart contract to your React dApp project by building an NFT Minter using Metamask and Web3.
