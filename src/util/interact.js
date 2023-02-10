@@ -83,7 +83,6 @@ export const getCurrentWalletConnected = async () => {
         };
     }
 };
-
 async function loadContract() {
     return new web3.eth.Contract(contractABI, contractAddress);
 }
