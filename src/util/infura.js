@@ -1,12 +1,14 @@
 import {create} from "ipfs-http-client";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 require('dotenv').config();
-const key = process.env.REACT_APP_PINATA_KEY;
-const secret = process.env.REACT_APP_PINATA_SECRET;
+const key = "2e2b2ef030a2edc41e78";
+const secret = "700b9bc7a499735ac2711617d36a6e6ef8732529abc78aca01bf6eb2b57b3786";
 const projectId = "2LZrTnoUGA4nGkbex1dabv6qp5w";
 const projectSecret = "bc29682177174314dd369a9aab0d6457";
 const axios = require('axios');
+let fileUrlExposed
+
 
 const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
 const client = create({
@@ -44,8 +46,14 @@ export const pinJSONToIPFS = async(JSONBody) => {
         });
 };
 
-export const FileUploaderInfura = () =>{
-    const [fileUrl, updateFileUrl] = useState('')
+export const FileUploaderInfura = () => {
+    const [fileUrl, updateFileUrl] = useState()
+
+    useEffect(() => {
+        fileUrlExposed = updateFileUrl
+
+        return () => fileUrlExposed = null
+    }, [])
     async function onChange(e) {
         const file = e.target.files[0]
         try {
@@ -56,7 +64,9 @@ export const FileUploaderInfura = () =>{
         } catch (error) {
             console.log('Error uploading file: ', error)
         }
+
     }
+
     return (
         <div className="App">
             <h1>IPFS Example</h1>
@@ -65,14 +75,8 @@ export const FileUploaderInfura = () =>{
                 type="file"
                 onChange={onChange}
             />
-            {
-
-                fileUrl && (
-                    <img src={fileUrl} width="600px" />
-                )
-            }
-            <p>{fileUrl}</p>
-
         </div>
     );
 }
+
+export default fileUrlExposed

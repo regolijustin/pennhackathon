@@ -1,4 +1,5 @@
 import { pinJSONToIPFS } from "./infura.js";
+import fileUrl from "./infura"
 require("dotenv").config();
 const alchemyKey = process.env.REACT_APP_ALCHEMY_KEY;
 const contractABI = require("../contract-abi.json");
@@ -88,15 +89,9 @@ async function loadContract() {
 }
 
 export const mintNFT = async (url, name, description) => {
-    if (url.trim() == "" || name.trim() == "" || description.trim() == "") {
-        return {
-            success: false,
-            status: "❗Please make sure all fields are completed before minting.",
-        };
-    }
 
     //make metadata
-    const metadata = new Object();
+    const metadata = {};
     metadata.name = name;
     metadata.image = url;
     metadata.description = description;

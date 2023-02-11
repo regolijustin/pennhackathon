@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {FileUploaderInfura} from "./util/infura";
 import { connectWallet, getCurrentWalletConnected, mintNFT } from "./util/interact.js";
+import fileUrlExposed from "./util/infura"
 const Minter = () => {
 
   //State variables
@@ -8,7 +9,6 @@ const Minter = () => {
   const [status, setStatus] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [url] = useState("");
 
     useEffect(async () => {
         const {address, status} = await getCurrentWalletConnected();
@@ -25,7 +25,7 @@ const Minter = () => {
     };
 
     const onMintPressed = async () => {
-        const { status } = await mintNFT(url, name, description);
+        const { status } = await mintNFT(fileUrlExposed, name, description);
         setStatus(status);
     };
 
