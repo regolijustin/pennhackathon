@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import FileUpload from "./util/pinata";
 import { connectWallet, getCurrentWalletConnected, mintNFT } from "./util/interact.js";
 const Minter = (props) => {
 
@@ -72,12 +73,8 @@ const Minter = (props) => {
         Simply add your asset's link, name, and description, then press "Mint."
       </p>
       <form>
-        <h2>🖼 Link to asset: </h2>
-        <input
-          type="text"
-          placeholder="e.g. https://gateway.pinata.cloud/ipfs/<hash>"
-          onChange={(event) => setURL(event.target.value)}
-        />
+        <h2>🖼 Select File </h2>
+          <FileUpload></FileUpload>
         <h2>🤔 Name: </h2>
         <input
           type="text"
