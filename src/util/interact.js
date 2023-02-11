@@ -1,5 +1,4 @@
 import { pinJSONToIPFS } from "./infura.js";
-import fileUrl from "./infura"
 require("dotenv").config();
 const alchemyKey = process.env.REACT_APP_ALCHEMY_KEY;
 const contractABI = require("../contract-abi.json");
@@ -88,12 +87,15 @@ async function loadContract() {
     return new web3.eth.Contract(contractABI, contractAddress);
 }
 
-export const mintNFT = async (url, name, description) => {
+export const mintNFT = async (url, name, category, description) => {
 
     //make metadata
     const metadata = {};
     metadata.name = name;
     metadata.image = url;
+    metadata.attributes = {
+        "value": category
+    }
     metadata.description = description;
 
     const pinataResponse = await pinJSONToIPFS(metadata);

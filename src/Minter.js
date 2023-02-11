@@ -8,6 +8,7 @@ const Minter = () => {
   const [walletAddress, setWallet] = useState("");
   const [status, setStatus] = useState("");
   const [name, setName] = useState("");
+  const [category, setCategory] = useState("")
   const [description, setDescription] = useState("");
 
     useEffect(async () => {
@@ -25,7 +26,7 @@ const Minter = () => {
     };
 
     const onMintPressed = async () => {
-        const { status } = await mintNFT(fileUrlExposed, name, description);
+        const { status } = await mintNFT(fileUrlExposed, name, category, description);
         setStatus(status);
     };
 
@@ -87,6 +88,15 @@ const Minter = () => {
           placeholder="e.g. Even cooler than cryptokitties ;)"
           onChange={(event) => setDescription(event.target.value)}
         />
+        <h2> Category of content: </h2>
+          <select name="selectedFruit"
+                  onChange={(event) => setCategory(event.target.value)}>
+              <option value="Web3">Web3</option>
+              <option value="Science">Science</option>
+              <option value="Math">Math</option>
+              <option value="Social-Studies">Social Studies</option>
+              <option value="Art">Art</option>
+          </select>
       </form>
       <button id="mintButton" onClick={onMintPressed}>
         Mint NFT
