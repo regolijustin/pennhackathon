@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {FileUploaderInfura} from "./util/pinata";
+import {FileUploaderInfura} from "./util/infura";
 import { connectWallet, getCurrentWalletConnected, mintNFT } from "./util/interact.js";
 const Minter = () => {
 

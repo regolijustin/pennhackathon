@@ -50,7 +50,7 @@ export const FileUploaderInfura = () =>{
         const file = e.target.files[0]
         try {
             const added = await client.add(file)
-            const url = `https://[your_dedicated_gateway_name].infura-ipfs.io/ipfs/${added.path}`
+            const url = `https://wonder-upenn.infura-ipfs.io/ipfs/${added.path}`
             updateFileUrl(url)
             console.log(url)
         } catch (error) {
