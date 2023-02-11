@@ -1,5 +1,4 @@
 import { pinJSONToIPFS } from "./infura.js";
-require("dotenv").config();
 const alchemyKey = process.env.REACT_APP_ALCHEMY_KEY;
 const contractABI = require("../contract-abi.json");
 const contractAddress = "0x5c01FA3667cb69Bf8308a11e20bb58e490cB71BA";
