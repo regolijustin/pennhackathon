@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import FileUpload from "./util/pinata";
+import {FileUploaderInfura} from "./util/pinata";
 import { connectWallet, getCurrentWalletConnected, mintNFT } from "./util/interact.js";
-const Minter = (props) => {
+const Minter = () => {
 
   //State variables
   const [walletAddress, setWallet] = useState("");
   const [status, setStatus] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [url, setURL] = useState("");
+  const [url] = useState("");
 
     useEffect(async () => {
         const {address, status} = await getCurrentWalletConnected();
@@ -74,7 +74,7 @@ const Minter = (props) => {
       </p>
       <form>
         <h2>🖼 Select File </h2>
-          <FileUpload></FileUpload>
+          <FileUploaderInfura></FileUploaderInfura>
         <h2>🤔 Name: </h2>
         <input
           type="text"
