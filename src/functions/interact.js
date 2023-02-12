@@ -1,7 +1,7 @@
 import { pinJSONToIPFS } from "./infura.js";
 const alchemyKey = "https://eth.goerli.g.alchemy.com/v2/_lb3t9smqTODPsRizKoX66j7g0uLW2os";
 const contractABI = require("../contract-abi.json");
-const contractAddress = "0x5c01FA3667cb69Bf8308a11e20bb58e490cB71BA";
+const contractAddress = "0xBe1fDC8aC765D2dc746a1afca40E87c2099f10EF";
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 const web3 = createAlchemyWeb3(alchemyKey);
 
@@ -127,13 +127,13 @@ export const mintNFT = async (url, name, category, description) => {
         return {
             success: true,
             status:
-                "✅ Check out your transaction on Etherscan: https://ropsten.etherscan.io/tx/" +
+                "https://ropsten.etherscan.io/tx/" +
                 txHash,
         };
     } catch (error) {
         return {
             success: false,
-            status: "😥 Something went wrong: " + error.message,
+            status: "err: " + error.message,
         };
     }
 };

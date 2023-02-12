@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import { Text, Button, Img, List } from "components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import ReactPlayer from 'react-player'
 
 import "./displayNFT.css"
 
@@ -21,7 +22,7 @@ const MainPagePage = () => {
           order_direction: "asc",
           offset: "0",
           limit: "20",
-          asset_contract_address: "0x5c01fa3667cb69bf8308a11e20bb58e490cb71ba",
+          asset_contract_address: "0xBe1fDC8aC765D2dc746a1afca40E87c2099f10EF",
         },
       };
 
@@ -48,31 +49,10 @@ const MainPagePage = () => {
         <div className="absolute md:h-[819px] sm:h-[819px] h-[885px] inset-x-[0] mx-[auto] top-[5%] w-[100%]">
           <div className="flex md:flex-col sm:flex-col flex-row md:gap-[20px] sm:gap-[20px] items-start justify-end mb-[-16px] ml-[auto] mr-[109px] p-[11px] w-[59%] z-[1]">
             <div className="flex flex-col font-sfprodisplay items-center justify-end md:mt-[0] sm:mt-[0] mt-[2px] p-[2px] md:w-[100%] sm:w-[100%] w-[18%]">
-              <Text
-                className="mt-[4px] not-italic text-left text-white_A700 w-[auto]"
-                as="h3"
-                variant="h3"
-              >
-                News
-              </Text>
             </div>
             <div className="flex flex-col font-sfpro items-start justify-end md:w-[100%] sm:w-[100%] w-[15%]">
-              <Text
-                className="md:ml-[0] sm:ml-[0] ml-[11px] mt-[9px] not-italic text-left text-white_A700 w-[auto]"
-                as="h3"
-                variant="h3"
-              >
-                Trading
-              </Text>
             </div>
             <div className="flex flex-col font-sfpro items-center justify-end md:ml-[0] sm:ml-[0] ml-[10px] md:mt-[0] sm:mt-[0] mt-[4px] md:w-[100%] sm:w-[100%] w-[25%]">
-              <Text
-                className="mt-[7px] not-italic text-left text-white_A700 w-[auto]"
-                as="h3"
-                variant="h3"
-              >
-                Development
-              </Text>
             </div>
             <Button
               className="common-pointer cursor-pointer font-fw font-sfpro leading-[normal] mb-[14px] min-w-[127px] md:ml-[0] sm:ml-[0] ml-[53px] md:mt-[0] sm:mt-[0] mt-[2px] sm:text-[21px] md:text-[23px] text-[25px] text-center text-white_A700 w-[auto]"
@@ -124,10 +104,16 @@ const NFTList = ({ projectListData, setProjectListData }) => {
         {projectListData.map((punk) => (
             <div key={punk.token_id} onClick={() => setProjectListData(punk.token_id)}>
               <CollectionCard
-                  id={punk.token_id}
                   name={punk.name}
                   traits={punk.traits}
-                  image={punk.image_original_url}
+              />
+              <ReactPlayer
+                  className='react-player fixed-bottom'
+                  url= './mainvid.mp4'
+                  width='100%'
+                  height='100%'
+                  controls = {true}
+
               />
             </div>
         ))}
@@ -137,11 +123,9 @@ const NFTList = ({ projectListData, setProjectListData }) => {
 const CollectionCard = ({ id, name, traits, image }) => {
   return (
       <div className="collection-card">
-        <img src={image} alt={name} />
         <div className="details">
           <div className="name">
             {name}
-            <div className="id">#{id}</div>
           </div>
           <div className="price-container">
             <div className="price">{traits[0]?.value}</div>
