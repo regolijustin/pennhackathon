@@ -1,10 +1,41 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 import { Text, Button, Img, List } from "components";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const MainPagePage = () => {
   const navigate = useNavigate();
+
+  const [projectListData, setProjectListData] = useState([]);
+  const [selectedNFT, setSelectedNFT] = useState(0);
+
+  useEffect(() => {
+    const getNFTs = async () => {
+      const options = {
+        method: "GET",
+        url: "https://testnets-api.opensea.io/api/v1/assets",
+        params: {
+          order_direction: "asc",
+          offset: "0",
+          limit: "20",
+          asset_contract_address: "0x5c01fa3667cb69bf8308a11e20bb58e490cb71ba",
+        },
+      };
+
+      axios
+          .request(options)
+          .then(function (response) {
+            setProjectListData(response.data.assets);
+          })
+          .catch(function (error) {
+            console.error("err: ", error);
+          });
+    };
+
+    getNFTs();
+  }, []);
+
 
   return (
     <>
@@ -59,58 +90,16 @@ const MainPagePage = () => {
                 className="flex-col gap-[41px] grid items-center w-[100%]"
                 orientation="vertical"
               >
-                <div className="flex flex-1 sm:flex-col flex-row sm:gap-[40px] items-center justify-between my-[0] w-[100%]">
-                  <Img
-                    src="images/img_frame2.png"
-                    className="common-pointer md:flex-1 sm:flex-1 h-[287px] sm:h-[auto] object-cover rounded-radius15 md:w-[100%] sm:w-[100%] w-[auto]"
-                    onClick={() => navigate("/videodisplay")}
-                    alt="FrameTwo"
-                  />
-                  <Img
-                    src="images/img_frame3.png"
-                    className="common-pointer md:flex-1 sm:flex-1 h-[298px] sm:h-[auto] object-cover rounded-radius15 md:w-[100%] sm:w-[100%] w-[auto]"
-                    onClick={() => navigate("/videodisplay")}
-                    alt="FrameThree"
-                  />
-                  <Img
-                    src="images/img_frame4.png"
-                    className="common-pointer md:flex-1 sm:flex-1 h-[287px] sm:h-[auto] object-cover rounded-radius15 md:w-[100%] sm:w-[100%] w-[auto]"
-                    onClick={() => navigate("/videodisplay")}
-                    alt="FrameFour"
-                  />
-                  <Img
-                    src="images/img_frame6.png"
-                    className="common-pointer md:flex-1 sm:flex-1 h-[287px] sm:h-[auto] object-cover rounded-radius15 md:w-[100%] sm:w-[100%] w-[auto]"
-                    onClick={() => navigate("/videodisplay")}
-                    alt="FrameSix"
-                  />
-                </div>
-                <div className="flex flex-1 sm:flex-col flex-row sm:gap-[40px] items-center justify-between my-[0] w-[100%]">
-                  <Img
-                    src="images/img_frame5.png"
-                    className="common-pointer md:flex-1 sm:flex-1 h-[287px] sm:h-[auto] object-cover rounded-radius15 md:w-[100%] sm:w-[100%] w-[auto]"
-                    onClick={() => navigate("/videodisplay")}
-                    alt="FrameFive"
-                  />
-                  <Img
-                    src="images/img_frame7.png"
-                    className="common-pointer md:flex-1 sm:flex-1 h-[287px] sm:h-[auto] object-cover rounded-radius15 md:w-[100%] sm:w-[100%] w-[auto]"
-                    onClick={() => navigate("/videodisplay")}
-                    alt="FrameSeven"
-                  />
-                  <Img
-                    src="images/img_frame8.png"
-                    className="common-pointer md:flex-1 sm:flex-1 h-[287px] sm:h-[auto] object-cover rounded-radius15 md:w-[100%] sm:w-[100%] w-[auto]"
-                    onClick={() => navigate("/videodisplay")}
-                    alt="FrameEight"
-                  />
-                  <Img
-                    src="images/img_frame9.png"
-                    className="common-pointer md:flex-1 sm:flex-1 h-[287px] sm:h-[auto] object-cover rounded-radius15 md:w-[100%] sm:w-[100%] w-[auto]"
-                    onClick={() => navigate("/videodisplay")}
-                    alt="FrameNine"
-                  />
-                </div>
+                {projectListData.length > 0 && (
+                    <>
+                      <Main selectedNFT={selectedNFT} projectListData={projectListData} />
+                      <NFTList
+                          projectListData={projectListData}
+                          setProjectListData={setSelectedNFT}
+                      />
+                    </>
+                )}
+
               </List>
             </div>
           </div>
@@ -126,5 +115,70 @@ const MainPagePage = () => {
     </>
   );
 };
+
+
+const NFTList = ({ projectListData, setProjectListData }) => {
+  return (
+      <div className="punklist">
+        {projectListData.map((punk) => (
+            <div key={punk.token_id} onClick={() => setProjectListData(punk.token_id)}>
+              <CollectionCard
+                  id={punk.token_id}
+                  name={punk.name}
+                  traits={punk.traits}
+                  image={punk.image_original_url}
+              />
+            </div>
+        ))}
+      </div>
+  );
+};
+const CollectionCard = ({ id, name, traits, image }) => {
+  return (
+      <div className="collection-card">
+        <img src={image} alt={name} />
+        <div className="details">
+          <div className="name">
+            {name}
+            <div className="id">#{id}</div>
+          </div>
+          <div className="price-container">
+            <div className="price">{traits[0]?.value}</div>
+          </div>
+        </div>
+      </div>
+  );
+};
+
+const Main = ({ selectedNFT, projectListData }) => {
+  const [activeNFT, setActiveNFT] = useState(projectListData[0]);
+
+  useEffect(() => {
+    setActiveNFT(projectListData[selectedNFT]);
+  }, [projectListData, selectedNFT]);
+
+  return (
+      <div className="main">
+        <div className="main-content">
+          <div className="punk-highlight">
+            <div className="punk-container">
+              <img
+                  className="selected-punk"
+                  src={activeNFT.image_original_url}
+              />
+            </div>
+          </div>
+
+          <div className="punk-details">
+            <div className="title">
+              {activeNFT.name}{" "}
+              <span className="item-number">#{activeNFT.token_id}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  );
+};
+
 
 export default MainPagePage;
