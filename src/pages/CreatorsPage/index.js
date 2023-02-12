@@ -105,12 +105,13 @@ const CreatorsPage = () => {
                   <FileUploaderInfura></FileUploaderInfura>
                 </div>
                 <div className="h-[109px] md:h-[110px] sm:h-[136px] mt-[45px] relative w-[100%]">
+                <br></br><br></br><br></br>
                   <input
                     type="text"
                     placeholder="e.g. My first NFT!"
                     onChange={(event) => setName(event.target.value)}
                   />
-                  
+                  <br></br><br></br>
                   <Text
                     className="absolute left-[0] not-italic text-left text-white_A700 top-[0] w-[auto]"
                     as="h2"
@@ -128,6 +129,7 @@ const CreatorsPage = () => {
                     <option value="Social-Studies">Social Studies</option>
                     <option value="Art">Art</option>
                   </select>
+                  <br></br><br></br><br></br>
                   <Text
                     className="absolute left-[0] not-italic text-left text-white_A700 top-[0] w-[auto]"
                     as="h2"
@@ -137,16 +139,19 @@ const CreatorsPage = () => {
                   </Text>
                 </div>
               </div>
+              <br></br>
               <Img
                 src="images/img_pngtransparent.png"
                 className="absolute h-[110px] left-[0] rounded-radius50 top-[0] w-[21%]"
                 alt="pngtransparent"
               />
+              <br></br>
               <Img
                 src="images/img_pngtransparent.png"
                 className="absolute h-[110px] left-[0] rounded-radius50 top-[30%] w-[21%]"
                 alt="pngtransparent One"
               />
+              <br></br>
               <Img
                 src="images/img_pngtransparent.png"
                 className="absolute bottom-[13%] h-[110px] left-[0] rounded-radius50 w-[21%]"
