@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-
 import { Img, Text } from "components";
 import { useNavigate } from "react-router-dom";
 import { connectWallet, getCurrentWalletConnected, mintNFT } from "../../functions/interact";
+import { Buffer} from 'buffer';
 import fileUrlExposed, {FileUploaderInfura} from "../../functions/infura";
 
 

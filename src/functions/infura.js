@@ -9,7 +9,7 @@ const axios = require('axios');
 let fileUrlExposed
 
 
-const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
+const auth = 'Basic ' + require('buffer/').Buffer.from(projectId + ':' + projectSecret).toString('base64');
 const client = create({
     host: 'ipfs.infura.io',
     port: 5001,
