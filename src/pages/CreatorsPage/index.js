@@ -121,6 +121,7 @@ const CreatorsPage = () => {
                   </Text>
                 </div>
                 <div className="h-[107px] md:h-[138px] sm:h-[138px] mt-[47px] relative w-[100%]">
+                  <br/><br/><br/>
                   <select name="selectedFruit"
                           onChange={(event) => setCategory(event.target.value)}>
                     <option value="Web3">Web3</option>
