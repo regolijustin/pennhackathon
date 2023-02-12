@@ -4,6 +4,7 @@ import { Text, Button, Img, List } from "components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ReactPlayer from 'react-player'
+import video from '../../mainvid.mp4'
 
 import "./displayNFT.css"
 
@@ -100,21 +101,17 @@ const MainPagePage = () => {
 
 const NFTList = ({ projectListData, setProjectListData }) => {
   return (
-      <div className="punklist">
+      <div>
         {projectListData.map((punk) => (
-            <div key={punk.token_id} onClick={() => setProjectListData(punk.token_id)}>
+            <div>
               <CollectionCard
                   name={punk.name}
                   traits={punk.traits}
               />
-              <ReactPlayer
-                  className='react-player fixed-bottom'
-                  url= './mainvid.mp4'
-                  width='100%'
-                  height='100%'
-                  controls = {true}
-
-              />
+              <video controls width="320" height="240" >
+                <source src={video} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
             </div>
         ))}
       </div>
