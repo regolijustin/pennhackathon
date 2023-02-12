@@ -4,6 +4,8 @@ import { Text, Button, Img, List } from "components";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import "./displayNFT.css"
+
 const MainPagePage = () => {
   const navigate = useNavigate();
 
@@ -92,7 +94,6 @@ const MainPagePage = () => {
               >
                 {projectListData.length > 0 && (
                     <>
-                      <Main selectedNFT={selectedNFT} projectListData={projectListData} />
                       <NFTList
                           projectListData={projectListData}
                           setProjectListData={setSelectedNFT}
