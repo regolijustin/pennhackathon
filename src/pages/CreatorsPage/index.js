@@ -23,6 +23,7 @@ const CreatorsPage = () => {
   const onMintPressed = async () => {
     const { status } = await mintNFT(fileUrlExposed, name, category, description);
     setStatus(status);
+
   };
 
   function addWalletListener() {
@@ -91,6 +92,9 @@ const CreatorsPage = () => {
             <div className="font-sfpro md:h-[401px] sm:h-[401px] h-[473px] mr-[533px] mt-[11px] relative md:w-[100%] sm:w-[100%] w-[52%]">
               <div className="absolute bottom-[0] flex flex-col items-center justify-end pt-[25px] right-[0] w-[83%]">
                 <div className="h-[118px] md:h-[91px] sm:h-[91px] relative w-[100%]">
+                  <br></br>
+                  <br></br>
+                  <br></br>
                   <Text
                     className="absolute left-[0] not-italic text-left text-white_A700 top-[0] w-[auto]"
                     as="h2"
@@ -100,12 +104,13 @@ const CreatorsPage = () => {
                   </Text>
                   <FileUploaderInfura></FileUploaderInfura>
                 </div>
-                <div className="h-[109px] md:h-[136px] sm:h-[136px] mt-[45px] relative w-[100%]">
+                <div className="h-[109px] md:h-[110px] sm:h-[136px] mt-[45px] relative w-[100%]">
                   <input
                     type="text"
                     placeholder="e.g. My first NFT!"
                     onChange={(event) => setName(event.target.value)}
                   />
+                  
                   <Text
                     className="absolute left-[0] not-italic text-left text-white_A700 top-[0] w-[auto]"
                     as="h2"
@@ -148,7 +153,7 @@ const CreatorsPage = () => {
                 alt="pngtransparent Two"
               />
             </div>
-            <button id="mintButton" onClick={onMintPressed}>
+            <button id="mintButton" onClick={onMintPressed, () => navigate("/mintingSuccessful")}>
               Mint NFT
             </button>
           </div>
