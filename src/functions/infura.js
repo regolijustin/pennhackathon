@@ -1,11 +1,11 @@
 import {create} from "ipfs-http-client";
 import {useEffect, useState} from "react";
+import axios from "axios"
 
 const key = "2e2b2ef030a2edc41e78";
 const secret = "700b9bc7a499735ac2711617d36a6e6ef8732529abc78aca01bf6eb2b57b3786";
 const projectId = "2LZrTnoUGA4nGkbex1dabv6qp5w";
 const projectSecret = "bc29682177174314dd369a9aab0d6457";
-const axios = require('axios');
 let fileUrlExposed
 
 

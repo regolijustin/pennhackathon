@@ -129,7 +129,6 @@ const CreatorsPage = () => {
                     <option value="Social-Studies">Social Studies</option>
                     <option value="Art">Art</option>
                   </select>
-                  <br></br><br></br><br></br>
                   <Text
                     className="absolute left-[0] not-italic text-left text-white_A700 top-[0] w-[auto]"
                     as="h2"
@@ -158,7 +157,7 @@ const CreatorsPage = () => {
                 alt="pngtransparent Two"
               />
             </div>
-            <button id="mintButton" onClick={onMintPressed, () => navigate("/mintingSuccessful")}>
+            <button id="mintButton" onClick={onMintPressed}>
               Mint NFT
             </button>
           </div>
